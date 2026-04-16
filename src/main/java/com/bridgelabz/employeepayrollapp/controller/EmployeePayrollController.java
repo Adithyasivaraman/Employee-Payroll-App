@@ -1,11 +1,21 @@
 package com.bridgelabz.employeepayrollapp.controller;
 
 import com.bridgelabz.employeepayrollapp.dto.EmployeeDTO;
+import com.bridgelabz.employeepayrollapp.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/employeepayrollservice")
 public class EmployeePayrollController {
+
+    @Autowired
+    private EmployeeService employeeService;
+
+    @PostMapping("/create")
+    public String createEmployee(@RequestBody EmployeeDTO emp) {
+        return employeeService.createEmployee(emp);
+    }
 
     // GET
     @GetMapping("/")
@@ -23,11 +33,6 @@ public class EmployeePayrollController {
     @PostMapping("/create")
     public String createEmployee(@RequestBody String employee) {
         return "Employee created: " + employee;
-    }
-
-    @PostMapping("/create")
-    public String createEmployee(@RequestBody EmployeeDTO emp) {
-        return "Employee created: " + emp.getName() + " Salary: " + emp.getSalary();
     }
 
     // PUT
