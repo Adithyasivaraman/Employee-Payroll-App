@@ -1,7 +1,10 @@
 package com.bridgelabz.employeepayrollapp.dto;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class EmployeeDTO {
 
+    @NotEmpty(message = "Name cannot be empty")
     private String name;
     private double salary;
 
